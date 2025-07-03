@@ -2,7 +2,7 @@ const Post = require("../models/Post");
 
 exports.getAllPosts = async(req,res)=>{
     try{
-        const posts = await Post.fetch();
+        const posts = await Post.find();
         if(!posts) return res.status(404).json({message: "post not found"});
         res.status(200).json(posts);
     }catch(err){
@@ -10,7 +10,7 @@ exports.getAllPosts = async(req,res)=>{
     }
 }
 
-exports.getAllPosts = async(req,res)=>{
+exports.getPost = async(req,res)=>{
     try{
         const {id} = req.body;
         const post = await Post.findById(id);
