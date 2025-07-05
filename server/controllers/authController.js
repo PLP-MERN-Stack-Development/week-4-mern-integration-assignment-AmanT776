@@ -14,7 +14,7 @@ exports.signUp = async(req,res,next)=>{
         const token = jwt.sign({id: user._id,role: user.role},process.env.JWT_SECRET,{
             expiresIn: '1h'
         });
-    res.status(200).json(token);
+    res.status(200).json({token: token});
     }catch(err){
         next(err);
     }
@@ -27,7 +27,7 @@ exports.login = async(req,res,next)=>{
         const match = await bcrypt.compare(password,user.password);
         if(!match) return res.json(401).json({message: "password doesn't match"});
         const token = jwt.sign({id: user._id,role: user.role},process.env.JWT_SECRET);
-        res.json(token);
+        res.json({token: token});
     }catch(err){
         next(err)
     }
