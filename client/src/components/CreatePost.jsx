@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button";
 const CreatePost = ()=>{
 
     return(
-        <form className="flex flex-col gap-3 p-20">
+        <form className="flex flex-col gap-3 p-10 md:p-20">
             <h1 className="text-2xl font-bold">Create New Post</h1>
             <label>
                 Post Title
