@@ -28,6 +28,10 @@ const Login = ()=>{
                         <Input placeholder="enter your password"/>
                     </label>
                 </form>
+                <div className="flex items-center gap-2 mt-3">
+                    <CardDescription>don't have an account</CardDescription>
+                    <CardAction className="hover:cursor-pointer">Signup</CardAction>
+                </div>
             </CardContent>
             <CardFooter>
                 <Button className="mx-auto hover:cursor-pointer">Login</Button>

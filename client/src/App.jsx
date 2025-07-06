@@ -1,9 +1,8 @@
-
-import Login from "./pages/Login";
-
+import Home from './pages/Home'
+import CreatePost from './components/CreatePost';
 const App = ()=>{
   return(
-    <Login/>
+    <CreatePost/>
   )
 }
 export default App;
