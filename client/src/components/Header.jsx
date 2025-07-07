@@ -1,6 +1,6 @@
 import profile from '@/assets/pp.jpg';
 import HamburgerMenu from './HamburgerMenu';
-
+import {NavLink} from 'react-router-dom'
 const Header = ()=>{
     
     return(
@@ -11,9 +11,18 @@ const Header = ()=>{
                     <HamburgerMenu/>
                     <div className="md:flex gap-3 items-center hidden ">
                         <ul className="text-slate-950  flex gap-3">
-                            <li className="hover:bg-blue-200 hover:cursor-pointer hover:rounded-sm hover:border-1 p-2">All posts</li>
-                            <li className="hover:bg-blue-200 hover:cursor-pointer hover:rounded-sm hover:border-1 p-2">My Posts</li>
-                            <li className="hover:bg-blue-200 hover:cursor-pointer hover:rounded-sm hover:border-1 p-2">Create Post</li>
+                            <NavLink to="/dashboard"
+                            className={({isActive})=>{return(isActive ? "bg-blue-200 rounded-sm" : "")}}>
+                                <li className="hover:bg-blue-200 hover:cursor-pointer hover:rounded-sm hover:border-1 p-2">All posts</li>
+                            </NavLink>
+                            <NavLink to='/myPost'
+                            className={({isActive})=>{return(isActive ? "bg-blue-200 rounded-sm" : "")}}>
+                                <li className="hover:bg-blue-200 hover:cursor-pointer hover:rounded-sm hover:border-1 p-2">My Posts</li>
+                            </NavLink>
+                            <NavLink to='/createPost'
+                            className={({isActive})=>{return(isActive ? "bg-blue-200 rounded-sm" : "")}}>
+                                <li className="hover:bg-blue-200 hover:cursor-pointer hover:rounded-sm hover:border-1 p-2">Create Post</li>
+                            </NavLink>
                         </ul>
                     </div>
                 </div>

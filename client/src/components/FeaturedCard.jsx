@@ -2,7 +2,7 @@ import {posts} from '../utils/mockData'
 
 const FeaturedCard = ({image,tags,title,excerpt,avatar,author,date})=>{
     return(
-            <div  className="card   md:card-side shadow-xl   lg:w-[70%]">
+            <div  className="card   md:card-side md:w-[90%] lg:w-[70%] lg:h-[300px] md:mx-auto shadow-xl ">
             <figure className='md:w-1/2'>
                 <img
                 src={image}
