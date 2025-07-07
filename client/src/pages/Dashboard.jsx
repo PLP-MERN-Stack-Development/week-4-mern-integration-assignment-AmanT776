@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import PostList from "@/components/PostList";
 import FeaturedCard from "@/components/FeaturedCard";
 import { posts } from "@/utils/mockData";
-const Home = ()=>{
+const Dashboard = ()=>{
     const featuredPost = posts[0];
     console.log(featuredPost)
     return(
@@ -39,4 +39,4 @@ const Home = ()=>{
         </div>
     )
 }
-export default Home;
+export default Dashboard;

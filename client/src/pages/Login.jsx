@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import {Link} from "react-router-dom"
 import { 
      Card
     ,CardHeader
@@ -8,9 +9,20 @@ import {
     ,CardContent
     ,CardFooter, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 const Login = ()=>{
-    
+    const [formValues,setFormValues] = useState({email: "",password: ""});
+    const handleChange = (e)=>{
+        const {name,value} = e.target;
+        setFormValues((prev)=>{
+            return({
+                ...prev,
+                [name]: value
+            })
+        })
+        
+    }
     return(
         <Card className="mx-auto w-fit translate-y-1/2">
             <CardHeader className="text-center">
@@ -21,16 +33,16 @@ const Login = ()=>{
                 <form>
                     <label>
                         Email
-                        <Input className="mb-3" placeholder="enter your email"/>
+                        <Input name="email" value={formValues.email} onChange={handleChange} className="mb-3" placeholder="enter your email"/>
                     </label>
                     <label>
                         Password
-                        <Input placeholder="enter your password"/>
+                        <Input name="password" value={formValues.password} onChange={handleChange} placeholder="enter your password"/>
                     </label>
                 </form>
                 <div className="flex items-center gap-2 mt-3">
                     <CardDescription>don't have an account</CardDescription>
-                    <CardAction className="hover:cursor-pointer">Signup</CardAction>
+                    <Link to='/signup'><CardAction className="hover:cursor-pointer">Signup</CardAction></Link>
                 </div>
             </CardContent>
             <CardFooter>
