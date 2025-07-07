@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {Link} from "react-router-dom"
+import {Link,useNavigate} from "react-router-dom"
 import { 
      Card
     ,CardHeader
@@ -10,9 +10,11 @@ import {
     ,CardFooter, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import API from "@/services/api";
 
 const Login = ()=>{
     const [formValues,setFormValues] = useState({email: "",password: ""});
+    const navigate = useNavigate();
     const handleChange = (e)=>{
         const {name,value} = e.target;
         setFormValues((prev)=>{
@@ -23,6 +25,19 @@ const Login = ()=>{
         })
         
     }
+const handleLogin = async(e)=>{
+    e.preventDefault();
+    try{
+        const res = await API.post('/auth/login',JSON.stringify(formValues));
+        localStorage.setItem("token",res.data.token);
+        navigate('/dashboard');
+        console.log(res)
+    }catch(err){
+        alert(err)
+        console.log(err.response.data)
+    }
+    
+}
     return(
         <Card className="mx-auto w-fit translate-y-1/2">
             <CardHeader className="text-center">
@@ -30,24 +45,22 @@ const Login = ()=>{
                 <CardDescription>Enter your email and password to login</CardDescription>
             </CardHeader>            
             <CardContent>
-                <form>
+                <form onSubmit={handleLogin}>
                     <label>
                         Email
-                        <Input name="email" value={formValues.email} onChange={handleChange} className="mb-3" placeholder="enter your email"/>
+                        <Input type={"email"} name="email" value={formValues.email} onChange={handleChange} className="mb-3" placeholder="enter your email"/>
                     </label>
                     <label>
                         Password
-                        <Input name="password" value={formValues.password} onChange={handleChange} placeholder="enter your password"/>
+                        <Input type={"password"} name="password" value={formValues.password} onChange={handleChange} placeholder="enter your password"/>
                     </label>
-                </form>
-                <div className="flex items-center gap-2 mt-3">
+                <div className="flex mb-3 items-center gap-2 mt-3">
                     <CardDescription>don't have an account</CardDescription>
                     <Link to='/signup'><CardAction className="hover:cursor-pointer">Signup</CardAction></Link>
                 </div>
+                <Button type={"submit"} className="w-full hover:cursor-pointer">Login</Button>
+                </form>
             </CardContent>
-            <CardFooter>
-                <Button className="mx-auto hover:cursor-pointer">Login</Button>
-            </CardFooter>
         </Card>
     )
 }

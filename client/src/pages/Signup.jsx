@@ -23,7 +23,7 @@ import API from "@/services/api";
 import axios from "axios";
 
 const Signup = ()=>{
-    const [formValues,setFormValues] = useState({userName: "",email: "",password: ""});
+    const [formValues,setFormValues] = useState({name: "",email: "",password: ""});
     const [loading,setLoading] = useState(false);
     const navigate = useNavigate();
     const handleChange = (e)=>{
@@ -35,35 +35,33 @@ const Signup = ()=>{
                 })
             })
         }
-    const createAccount = async (e)=>{
+    const handleSignup = async (e)=>{
         e.preventDefault();
         setLoading(true);
         try{
-            const res = await axios.post("http://localhost:5000/api/auth/signup",formValues,{
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-            console.log(res) 
-            
+            const res = await API.post("/auth/signup",JSON.stringify(formValues));
+            if(res){
+                navigate('/login')
+            } 
         }catch(err){
-            alert(err);
+            alert(err.response.data);
+            console.log(err.response.data.message)
         }finally{
             setLoading(false);
         }
     }
     
     return(
-        <Card className="mx-auto w-[400px] translate-y-1/2">
+        <Card className="mx-auto w-[320px]  sm:w-[400px] sm:translate-y-1/2 translate-y-1/3">
             <CardHeader className="text-center">
                 <CardTitle>Signup</CardTitle>
                 <CardDescription>Create a new account</CardDescription>
             </CardHeader>
             <CardContent>
-                <form onSubmit={createAccount}>
+                <form onSubmit={handleSignup}>
                     <label>
                     Name
-                        <Input name="userName" value={formValues.userName} onChange={handleChange} className="mb-2" placeholder="enter your name"/>
+                        <Input name="name" value={formValues.name} onChange={handleChange} className="mb-2" placeholder="enter your name"/>
                     </label>
                     <label>
                         Email
@@ -73,7 +71,7 @@ const Signup = ()=>{
                         Password
                         <Input name="password" type={"password"} value={formValues.password} onChange={handleChange} placeholder="enter your password"/>
                     </label>
-                <div className="flex gap-2 justify-center items-center mt-3">
+                <div className="flex mb-3 gap-2 justify-center items-center mt-3">
                     <CardDescription>already have an account? </CardDescription>
                     <Link to="/login"><CardAction className="hover:cursor-pointer">Login</CardAction></Link>
                 </div>
