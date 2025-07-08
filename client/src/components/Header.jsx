@@ -5,11 +5,9 @@ import {
   Select,
   SelectContent,
   SelectGroup,
-  SelectItem,
-  SelectLabel,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select"
+import { Button } from '@mui/material';
 
 const Header = ()=>{
     
@@ -46,11 +44,10 @@ const Header = ()=>{
                             </div>
                         </div>
                     </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            <SelectLabel>settings</SelectLabel>
-                            <SelectItem value="profile">Profile</SelectItem>
-                            <SelectItem value="logout">Logout</SelectItem>
+                    <SelectContent >
+                        <SelectGroup className="flex flex-col items-center">
+                            <NavLink to='/profile'><Button>Profile</Button></NavLink>
+                            <NavLink to='/login'><Button>Logout</Button></NavLink>
                         </SelectGroup>
                     </SelectContent>
                 </Select>

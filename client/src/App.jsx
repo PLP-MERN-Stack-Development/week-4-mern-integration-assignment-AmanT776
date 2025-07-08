@@ -7,6 +7,7 @@ import Signup from './pages/Signup';
 import MainLayout from './Layouts/MainLayout';
 import { Toaster } from 'sonner';
 import Mypost from './components/Mypost';
+import Profile from './components/Profile';
 
 const App = ()=>{
   return(
@@ -40,6 +41,9 @@ const App = ()=>{
           <Mypost/>
         </ProtectedRoute>
         }/>
+        <Route
+        element={<Profile/>}
+        path='/profile'/>
         </Route>
 
       </Routes>
