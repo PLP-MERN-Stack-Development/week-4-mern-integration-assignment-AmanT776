@@ -6,11 +6,12 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import MainLayout from './Layouts/MainLayout';
 import { Toaster } from 'sonner';
+import Mypost from './components/Mypost';
 
 const App = ()=>{
   return(
     <>
-      <Toaster  position="top-center" richColors />
+      <Toaster  position="top-center" richColors closeButton/>
       <Routes>
         <Route path='/' element={<Navigate to="/dashboard"/>}/>
         <Route path='/post' element={<Navigate to="/createPost"/>}/>
@@ -32,7 +33,15 @@ const App = ()=>{
             <CreatePost/>
           </ProtectedRoute>
         }/>
+        <Route 
+        path='/myPost'
+        element={
+        <ProtectedRoute>
+          <Mypost/>
+        </ProtectedRoute>
+        }/>
         </Route>
+
       </Routes>
       
     </>

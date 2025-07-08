@@ -1,17 +1,7 @@
-import { useState } from "react"
 import PostCard from "./PostCard"
-import { useEffect } from "react";
-import API from "@/services/api";
+import usePosts from "@/hooks/usePosts";
 const PostList = ()=>{
-    const [posts,setPosts] = useState([]);
-    useEffect(()=>{
-        async function fetchData(){
-            const res = await API.get('/posts/');
-            setPosts(res.data);
-        }
-        fetchData();
-    },[])
-    console.log(posts)
+    const {posts} = usePosts();
     return(
         posts.length > 0 ? posts.map((post,index)=>{
             return(

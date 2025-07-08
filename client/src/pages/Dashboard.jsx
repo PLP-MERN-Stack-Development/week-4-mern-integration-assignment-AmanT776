@@ -1,12 +1,11 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import PostList from "@/components/PostList";
-import FeaturedCard from "@/components/FeaturedCard";
-import { posts } from "@/utils/mockData";
+import FeaturedPost from "@/components/FeaturedPost";
+
 const Dashboard = ()=>{
-    const featuredPost = posts[0];
+    
     return(
-        <div className="overflow-hidden">
+        <>
+            <div className="overflow-hidden">
             <div className="translate-x-6 mt-2 w-full mr-2">
                 <h2 className="text-gray-950 text-2xl font-bold">Welcome to DaguBlog</h2>
                 <p>Discover interesting stories and insights from our authors</p>
@@ -14,15 +13,7 @@ const Dashboard = ()=>{
            <div className="mt-3">
                 <h3 className="font-semibold text-xl lg:translate-x-70 lg:mb-2   translate-x-10 md:text-start">Featured Post</h3>
                 <div className="p-12 md:p-0 ">
-                    <FeaturedCard
-                    image={featuredPost.image}
-                    tags={featuredPost.tags}
-                    title={featuredPost.title}
-                    excerpt={featuredPost.excerpt}
-                    avatar={featuredPost.author.avatar}
-                    author={featuredPost.author.name}
-                    date={featuredPost.date}
-                />
+                <FeaturedPost/>
                 </div>
             </div>
                 <div>
@@ -32,6 +23,7 @@ const Dashboard = ()=>{
                 </div>
                 </div>   
         </div>
+        </>
     )
 }
 export default Dashboard;

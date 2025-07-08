@@ -1,6 +1,16 @@
 import profile from '@/assets/pp.jpg';
 import HamburgerMenu from './HamburgerMenu';
 import {NavLink} from 'react-router-dom'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 const Header = ()=>{
     
     return(
@@ -26,13 +36,24 @@ const Header = ()=>{
                         </ul>
                     </div>
                 </div>
-                <div className='flex gap-3'>
-                    <img src={profile} alt="profile picture" className='w-[50px] h-[50px] rounded-full'/>
-                    <div>
-                        <h1 className='font-bold'>user</h1>
-                        <p className='text-zinc-500'>author</p>
-                    </div>
-                </div>
+                 <Select className="">
+                    <SelectTrigger className="w-[180px] border-none">
+                        <div className='flex gap-3'>
+                            <img src={profile} alt="profile picture" className='w-[50px] h-[50px] rounded-full'/>
+                            <div>
+                                <h1 className='font-bold'>user</h1>
+                                <p className='text-zinc-500'>author</p>
+                            </div>
+                        </div>
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>settings</SelectLabel>
+                            <SelectItem value="profile">Profile</SelectItem>
+                            <SelectItem value="logout">Logout</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
             </nav>
         </header>
     )
