@@ -1,7 +1,12 @@
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button"
+import { useState } from "react";
 
 const Profile = ()=>{
+    const [formValues,setFormValues] = useState();
+    const handleChange = (e)=>{
+        const {name,value} = e.taget
+    }
     return(
         <>
             <div className="p-10">
